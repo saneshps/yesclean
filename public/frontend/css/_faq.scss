@@ -1,0 +1,157 @@
+// =============================== FAQ
+.product-faq-area {
+    margin: 0 0 80px 0;
+
+    .product-faq-box {
+        h2 {
+            text-align: center;
+            margin: 0 0 30px 0;
+
+            @include respond-below(sm) {
+                font-size: 23px; 
+        }
+        }
+
+
+        // =====
+
+        .accordion {
+            width: 100%;
+            position: relative;
+        }
+
+        .accordian-chk {
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            height: 40px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            -khtml-appearance: none;
+            appearnace: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            padding: 0 20px;
+            z-index: 2;
+            margin: 0px;
+        }
+
+        .accordion h3 {
+            background: #3175c4 none;
+            border: 1px solid #3175c4 !important;
+            position: relative;
+            padding: 10px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: normal;
+            font-family: arial;
+            margin: 0;
+            z-index: 1;
+        }
+
+        .accordion h3 .acc-icon {
+            width: 0;
+            height: 0;
+            position: absolute;
+            right: 10px;
+            top: 15px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #fff;
+            border-bottom: 5px solid transparent;
+        }
+
+        .accordion .accordian-chk:checked+h3>.acc-icon {
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid #fff;
+            border-top: 5px solid transparent;
+            top: 10px;
+        }
+
+        .accordion .accordian-chk:checked+h3+div.accordian-content {
+            opacity: 1;
+            -moz-transition-duration: 0.5s;
+            -webkit-transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            max-height: 1000px;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        .accordian-content {
+            opacity: 0;
+            padding: 15px;
+            overflow: hidden;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            -moz-transition-duration: 0.5s;
+            -webkit-transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            border: 1px solid #3175c4;
+            margin-bottom: 2px;
+        }
+
+       
+        .accordion_body
+        {
+            p 
+            {
+                padding: 0 10px !important;
+            }
+           
+            h5 
+            {
+                padding: 0 0 0 10px;
+            }
+
+            ul 
+            {
+                margin-left: 30px;
+                li 
+                {
+                    list-style-type: disc;
+                    line-height: 28px;
+                    font-weight: 400;
+                }
+            }
+        }
+        .accordion_head
+        {
+            margin: 0px 0 15px 0 !important;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @include respond-below(sm) {
+                    font-size: 15px; 
+            }
+            
+            .plusminus
+            {
+                float: none !important; 
+            }
+        }
+
+        // =====
+
+    }
+}
+
+// =============================== FAQ

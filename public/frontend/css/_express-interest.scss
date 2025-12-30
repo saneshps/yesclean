@@ -1,0 +1,72 @@
+.express-intrst-area {
+    padding: 50px 0;
+
+    .express-intrst-box {
+        background: #017ac9;
+        border-radius: 8px;
+        margin: 0 0 60px 0;
+        padding: 50px 50px;
+
+        @include respond-below(sm) {
+            padding: 30px 20px;
+        }
+
+        .form-box {
+            input {
+                background: #017ac9 !important;
+                padding: 10px !important;
+                border: 1px solid #dbdbdb !important;
+                font-size: 15px !important;
+                width: 100% !important;
+                color: #fff !important;
+                border-radius: 6px !important;
+                margin: 0 0 20px 0;
+
+                &::placeholder {
+                    color: #e2e2e2;
+                    font-family: "Exo 2", sans-serif !important;
+                }
+            }
+
+            .send {
+                background: #fff !important;
+                cursor: pointer;
+                color: #333 !important;
+                font-family: "Exo 2", sans-serif !important;
+            }
+
+            button {
+                border-radius: 6px;
+                border: none;
+                padding: 10px 20px !important;
+            }
+        }
+
+        h3 {
+            font-family: "Exo 2", sans-serif !important;
+            color: #ffffff;
+            margin: 0 0 30px 0;
+        }
+
+        .mycaptcha {
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .position-relative {
+            position: relative;
+            margin: 7px 0 0 0;
+        }
+
+        .fa-refresh {
+            font-size: 24px !important;
+            padding-top: 13px !important;
+            position: absolute !important;
+            top: 4px !important;
+            left: 150px !important;
+            color: #ffffff !important;
+            right: -40px !important;
+        }
+    }
+}

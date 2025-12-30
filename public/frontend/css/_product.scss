@@ -1,0 +1,101 @@
+.product-view-content {
+    .express-intrest-manual {
+
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        margin: 40px 0 30px 0;
+        padding: 0 10px;
+
+
+        .express-intrest {
+
+
+            .show {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                background: #000000a1;
+            }
+
+            .express {
+                background: #017ac9;
+                color: #fff;
+                font-size: 17px;
+                border-radius: 6px;
+                letter-spacing: 0;
+                text-transform: capitalize;
+                outline: none !important;
+                border: none;
+                cursor: pointer;
+                padding: 10px 20px !important;
+
+
+                @include respond-below(sm) {
+                    padding: 10px !important;
+                }
+
+            }
+
+            .modal-content {
+                padding: 15px 10px;
+
+                @include respond-below(sm) {
+                    padding: 15px 0px;
+                }
+
+                .close {
+                    float: right;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    line-height: 1;
+                    color: #017ac9;
+                    text-shadow: 0 1px 0 #fff;
+                    opacity: 1;
+                    border: 1px solid #017ac9 !important;
+                    padding: 3px 7px !important;
+                    margin: 0 -15px -15px auto !important;
+                }
+
+            }
+
+            .modal-body {
+                form {
+                    button {
+                        background: $brand-color;
+                        color: #fff;
+                        float: right;
+                        letter-spacing: 1px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            button {
+                margin-bottom: 0;
+            }
+        }
+
+        .manual {
+
+            a {
+                background: #017ac9;
+                color: #ffff;
+                font-size: 17px;
+                border-radius: 6px;
+                padding: 12px 20px;
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+                i {
+                    padding-left: 10px;
+                    font-size: 18px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

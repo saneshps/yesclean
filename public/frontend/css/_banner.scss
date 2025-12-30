@@ -1,0 +1,104 @@
+.banner-area {
+    height: 660px;
+    @include respond-below(xl) {
+        height: 525px; 
+    }
+
+    @include respond-below(lg) {
+        height: 390px; 
+    }
+
+    @include respond-below(md) {
+        height: 312px; 
+    }
+
+    @include respond-below(sm) {
+        height: auto; 
+    }
+
+
+    .banner-desktop {
+        width: 100%;
+        height: 660px;
+        object-fit: cover;
+
+
+        @include respond-below(xl) {
+            height: 580px;
+            object-fit: contain;
+        }
+
+        @include respond-below(lg) {
+            height: 430px;
+            object-fit: contain;
+        }
+
+        @include respond-below(md) {
+            height: 360px;
+            object-fit: contain;
+        }
+
+        @include respond-below(sm) {
+            height: auto;
+            object-fit: contain;
+            margin: 46px 0 0 0;
+        }
+    }
+
+    .banner-mobile {
+        display: none;
+        height: 600px;
+
+        img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+    }
+}
+
+#top-header {
+    position: relative;
+}
+
+#top-header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: red;
+    clip-path: polygon(39% 1%, 100% 0%, 100% 100%, 41% 100%, 0% 50%);
+}
+
+
+@media only screen and (min-width : 1200px) and (max-width : 1360px) {
+    .banner-area img {
+        height: 540px;
+    }
+
+    .banner-area {
+        height: 500px;
+    }
+}
+
+@media only screen and (min-width : 150px) and (max-width : 767px) {
+
+    .banner-area {
+        .banner-desktop {
+            display: none !important;
+        }
+    }
+
+    .banner-mobile {
+        display: block !important;
+
+        img {
+            width: 100% !important;
+        }
+    }
+
+
+}
