@@ -313,7 +313,7 @@
               <div class="col-md-12 d-flex mb-3">
                 <input type="text" class="form-control" placeholder="Captcha" name="cpatchatxtbox" id="cpatchaTextBox_1">
               </div>
-              <div class="col-md-3 col-6 form-box mx-auto">
+              <div class="col-md-3 col-6 form-box mx-auto text-center">
                 <button type="submit" class="send" id="express-interest-submit" data-id="1">SEND</button>
               </div>
             </div>
