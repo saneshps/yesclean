@@ -17,16 +17,16 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://www.yesclean.ae/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="  Best Cleaning Machinery Equipment & Cleaning Materials Suppliers In UAE - YES Clean ">
-    <meta property="og:description" content="YES Clean is one of the leading suppliers of cleaning machinery, equipment, and materials in the UAE. We Provid High-quality products at competitive prices. Shop from our exclusive inventory today!">
+    <meta property="og:title" content="Trusted Cleaning Machinery, Equipment & Cleaning Materials Suppliers in Dubai, UAE.">
+    <meta property="og:description" content="YES Clean is one of the leading, trusted, and experienced suppliers of cleaning machinery and equipment in the UAE. We provide high-quality products at competitive prices.">
     <meta property="og:image" content="">
     
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="yesclean.ae">
     <meta property="twitter:url" content="https://www.yesclean.ae/">
-    <meta name="twitter:title" content="  Best Cleaning Machinery Equipment & Cleaning Materials Suppliers In UAE - YES Clean ">
-    <meta name="twitter:description" content="YES Clean is one of the leading suppliers of cleaning machinery, equipment, and materials in the UAE. We Provid High-quality products at competitive prices. Shop from our exclusive inventory today!">
+    <meta name="twitter:title" content="Trusted Cleaning Machinery, Equipment & Cleaning Materials Suppliers in Dubai, UAE.">
+    <meta name="twitter:description" content="YES Clean is one of the leading, trusted, and experienced suppliers of cleaning machinery and equipment in the UAE. We provide high-quality products at competitive prices.">
     <meta name="twitter:image" content="">
     <!-- OG Tags -->
 
