@@ -25,12 +25,14 @@ class ProductController extends BaseController
 
       $this_cat = Category::where('short_code', $slug)->first();
       $categories = Category::where('parent_id', $this_cat->id)->orderBy('menu_order', 'asc')->get();
-      return view('categories', compact('categories', 'this_cat', 'count_cat','slug'));
+      return view('categories', compact('categories', 'this_cat', 'count_cat', 'slug'));
     } else {
 
       $this_cat = Category::where('short_code', $slug)->first();
-      $products = Product::where('category_id', $this_cat->id)->orderBy('menu_order', 'asc')->get();
-      return view('categories', compact('products', 'count_cat', 'this_cat','slug'));
+      $products = Product::where('category_id', $this_cat->id)
+        ->where('status', 1)
+        ->orderBy('menu_order', 'asc')->get();
+      return view('categories', compact('products', 'count_cat', 'this_cat', 'slug'));
     }
   }
   public function allProducts()

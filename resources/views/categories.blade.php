@@ -98,7 +98,7 @@
       <div class="col-md-12 col-sm-12">
         <h2 style="text-transform: uppercase;" id="product-tittle">{{$this_cat->name}}</h2>
 
-                    {!! $this_cat->description !!}
+                    {{-- {!! $this_cat->description !!} --}}
 
         <div class="row pro-image-box">
           @if($count_cat >= 1)
