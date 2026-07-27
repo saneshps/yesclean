@@ -1,0 +1,107 @@
+.values-area {
+
+    background: #017ac9;
+    margin: 80px 0 100px 0;
+
+    @include respond-below(xl) {
+        margin: 40px 0 100px 0;
+    }
+
+
+
+    h2 {
+        text-align: center;
+        position: relative;
+        color: #ffffff;
+        margin: 0 0 50px 0;
+        padding-top: 60px;
+
+        @include respond-below(md) {
+            margin: 0 0 20px 0;
+        }
+
+        &::after {
+            width: 120px;
+            height: 4px;
+            border-top: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: -5px;
+
+            @include respond-below(sm) {
+                width: 90px;
+                top: 97px;
+            }
+        }
+    }
+
+
+    .value-box {
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 0 90px 0;
+
+        @include respond-below(sm) {
+            padding: 20px 0 90px 0;
+        }
+
+        .values-boxes {
+            background: #fff;
+            padding: 25px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            border-radius: 6px;
+            height: 280px;
+
+            @include respond-below(xl) {
+                padding: 25px 15px;
+                height: 320px;
+            }
+
+            @include respond-below(lg) {
+                padding: 25px 15px;
+                height: 250px;
+                margin: 0 0 40px 0;
+            }
+
+            @include respond-below(md) {
+                padding: 25px 15px;
+                height: 250px;
+            }
+            @include respond-below(sm) {
+                padding: 25px 15px;
+                height: auto;
+            }
+
+
+
+            h3 {
+                color: #017ac9;
+            }
+
+            p {
+                color: #333;
+            }
+
+            img
+            {
+                height: 70px;
+                object-fit: contain;
+                width: 100%;
+                margin: 0 0 20px 0;
+            }
+        }
+    }
+
+
+
+
+}

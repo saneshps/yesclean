@@ -1,0 +1,143 @@
+ .social-media-area {
+     margin: 0px 0 0px 0;
+     background: #f1f1f1;
+     padding: 70px 0 60px 0;
+
+     .container-fluid {
+         width: 65%;
+
+         @include respond-below(xl) {
+             width: 75%;
+         }
+
+         @include respond-below(lg) {
+             width: 72%;
+         }
+
+         @include respond-below(md) {
+             width: 90%;
+         }
+
+         @include respond-below(sm) {
+             width: auto;
+         }
+     }
+
+     h2 {
+         font-size: 2.3rem;
+         font-weight: 600;
+         color: #017ac9;
+         position: relative;
+         text-transform: uppercase;
+         text-align: center;
+
+         @include respond-below(sm) {
+             font-size: 1.7rem;
+         }
+
+         &::after {
+             width: 240px !important;
+             height: 4px;
+             border-top: 1px solid #017ac9;
+             border-bottom: 1px solid #017ac9;
+             content: "";
+             position: absolute;
+             left: 0;
+             right: 0;
+             margin: 0 auto;
+             top: 45px;
+
+             @include respond-below(sm) {
+                 width: 180px !important;
+                 top: 36px;
+             }
+
+         }
+     }
+
+     .socialMediaSwiper {
+
+         margin: 50px 0 30px 0;
+
+
+         .swiper-slide {
+
+             a {
+                 text-decoration: none !important;
+
+                 &:hover {
+                     text-decoration: none !important;
+                 }
+             }
+
+             img {
+                 width: 100%;
+                 border-radius: 6px 6px 0 0;
+                 height: 300px;
+                 object-fit: cover;
+
+                 @include respond-below(xl) {
+                     height: 210px;
+                 }
+
+                 @include respond-below(lg) {
+                     height: 240px;
+                 }
+
+                 @include respond-below(md) {
+                     height: 240px;
+                 }
+
+                 @include respond-below(sm) {
+                     height: auto;
+                 }
+             }
+
+
+
+
+             .like-and-share {
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 background: #017ac9;
+                 padding: 10px 0;
+                 margin: 0 0 1px 0;
+
+
+                 h6 {
+                     text-align: center;
+                     margin: 0 7px 0 0;
+                     text-decoration: none;
+                     color: #fff;
+
+                     &:hover {
+                         text-decoration: none;
+                         color: #fff;
+                     }
+                 }
+
+                 i {
+                     margin: 0 10px 0 0;
+                     color: #fff;
+                     font-size: 18px;
+                 }
+
+                 p {
+                     margin: 0;
+                     color: #fff;
+                 }
+
+
+             }
+
+             .caption {
+                 margin: 0;
+                 color: #fff;
+                 background: #017ac9;
+                 padding: 10px 20px 20px 20px;
+                 text-align: center;
+             }
+         }
+     }
+ }

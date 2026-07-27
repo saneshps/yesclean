@@ -1,0 +1,53 @@
+ 
+
+    .btn-top {
+        padding: 5px 15px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important; 
+
+        color: #fff !important;
+        background: $brand-color;  
+        border-radius: 6px !important;
+        border-radius: 0;
+        border: 2px solid $brand-color;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+        -webkit-border-radius: 6px !important;
+        -moz-border-radius: 6px !important;
+        -ms-border-radius: 6px !important;
+        -o-border-radius: 6px !important;
+    }
+
+    .btn-top:focus,
+    .btn-top:hover {
+        color: #333 !important;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2) inset;
+    }
+
+    .btn-top:after {
+        content: "";
+        background: #fff;
+        width: 100%;
+        height: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+
+    .btn-top:hover:after {
+        height: 100%;
+        bottom: auto;
+        top: 0;
+    }
+
+    // @media only screen and (max-width: 767px) {
+    //     .btn {
+    //         margin-bottom: 30px;
+    //     }
+    // }
+
+ 

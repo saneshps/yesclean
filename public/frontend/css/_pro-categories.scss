@@ -1,0 +1,133 @@
+.pro-categories {
+
+    padding-right: 80px !important;
+
+    @include respond-below(xl) {
+        padding-right: 50px !important;
+    }
+
+    @include respond-below(lg) {
+        padding-right: 50px !important;
+    }
+
+    @include respond-below(md) {
+        padding-right: 0px !important;
+    }
+
+    @include respond-below(sm) {
+        padding-right: 10px !important;
+    }
+
+
+
+    .col-lg-4 {
+        @include respond-below(lg) {
+
+            padding: 0 10px;
+        }
+
+        a {
+            h3 {
+                text-transform: uppercase;
+                font-size: 18px !important;
+                color: #fff;
+                text-align: center;
+                margin-bottom: 2%;
+
+                @include respond-below(xl) {
+                    font-size: 14px !important;
+                }
+            }
+
+            text-decoration: none !important;
+
+            &:hover {
+                text-decoration: none !important;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #017ac9;
+        text-transform: uppercase;
+        position: relative;
+        margin: 0 0 25px 0 !important;
+
+        @include respond-below(sm) {
+            font-size: 1.7rem !important;
+        }
+
+        &::after {
+            width: 330px !important;
+            height: 4px;
+            border-top: 1px solid #017ac9;
+            border-bottom: 1px solid #017ac9;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 40px;
+
+            @include respond-below(sm) {
+                width: 280px !important;
+            }
+        }
+    }
+
+
+    a {
+        .pro-categories-box {
+            background: #017ac9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 8px;
+            margin: 15px 0px;
+            padding: 0px 10px;
+            height: 190px;
+
+            @include respond-below(xl) {
+                height: 190px;
+                margin: 10px 0px;
+                padding: 20px 10px 0 10px;
+            }
+
+            @include respond-below(lg) {
+                height: 200px;
+                margin: 10px 0px;
+                padding: 20px 15px 0 15px;
+            }
+
+            @include respond-below(md) {
+                height: 190px;
+                margin: 15px 0px;
+                padding: 20px 10px 0 10px;
+            }
+
+            img {
+                width: 90px !important;
+                height: auto;
+            }
+
+            h3 {
+                color: #fff;
+                padding: 20px 0;
+                font-size: 18px;
+                
+
+                @include respond-below(xl) {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &:hover {
+            .pro-categories-box {
+                background: #737272;
+                transition: all .3s ease-in-out;
+            }
+        }
+    }
+}

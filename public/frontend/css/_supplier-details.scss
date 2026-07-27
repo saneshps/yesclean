@@ -1,0 +1,74 @@
+.supplier-details-area {
+  padding: 20px 225px 80px;
+
+  @include respond-below(xl) {
+    padding: 20px 125px 40px;
+  }
+
+  @include respond-below(lg) {
+    padding: 20px 65px 50px;
+  }
+
+  @include respond-below(md) {
+    padding: 20px 25px 30px;
+  }
+
+  @include respond-below(sm) {
+    padding: 10px 15px 20px;
+  }
+
+  .supplier-details-box {
+    .product-supplier {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 7px;
+
+        @include respond-below(md) {
+          width: 90%;
+        }
+
+        @include respond-below(sm) {
+          padding: 0 80px;
+          margin: 0 0 30px 0;
+        }
+
+      }
+    }
+
+    h2 {
+      font-size: 2.1rem;
+
+      @include respond-below(xl) {
+        font-size: 1.8rem;
+      }
+
+      @include respond-below(md) {
+        font-size: 1.6rem;
+      }
+
+      @include respond-below(sm) {
+        margin: 0 0 20px 0;
+        text-align: center;
+      }
+
+    }
+
+    .col-xl-2 {
+      justify-content: flex-end;
+      display: flex;
+      padding: 0;
+
+      @include respond-below(sm) {
+        justify-content: center;
+        margin: 10px 0;
+      }
+    }
+  }
+}
