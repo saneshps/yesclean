@@ -41,4 +41,12 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class)
+            ->where('status', 1)
+            ->orderBy('sort_order')
+            ->orderBy('id');
+    }
 }

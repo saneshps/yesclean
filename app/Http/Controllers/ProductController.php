@@ -14,25 +14,23 @@ class ProductController extends BaseController
   //
   public function category($slug)
   {
+    $this_cat = Category::with('faqs')
+      ->where('short_code', $slug)
+      ->firstOrFail();
 
+    $categories = Category::where('parent_id', $this_cat->id)
+      ->orderBy('menu_order', 'asc')
+      ->get();
+    $count_cat = $categories->count();
+    $faqs = $this_cat->faqs;
 
-    // $cat = Category::where('parent_id', 0)->where('short_code', $slug)->get();  
-    $cat_check = Category::where('short_code', $slug)->first();
-    $cat_id = $cat_check->id;
-    $cat = Category::where('parent_id', $cat_id)->orderBy('menu_order', 'asc')->get();
-    $count_cat = count($cat);
     if ($count_cat >= 1) {
-
-      $this_cat = Category::where('short_code', $slug)->first();
-      $categories = Category::where('parent_id', $this_cat->id)->orderBy('menu_order', 'asc')->get();
-      return view('categories', compact('categories', 'this_cat', 'count_cat', 'slug'));
+      return view('categories', compact('categories', 'this_cat', 'count_cat', 'slug', 'faqs'));
     } else {
-
-      $this_cat = Category::where('short_code', $slug)->first();
       $products = Product::where('category_id', $this_cat->id)
         ->where('status', 1)
         ->orderBy('menu_order', 'asc')->get();
-      return view('categories', compact('products', 'count_cat', 'this_cat', 'slug'));
+      return view('categories', compact('products', 'count_cat', 'this_cat', 'slug', 'faqs'));
     }
   }
   public function allProducts()

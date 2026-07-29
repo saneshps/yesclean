@@ -4,6 +4,24 @@
 <meta name="keywords" content="{{$this_cat->meta_keywords}}">
 <meta name="description" content="{{$this_cat->meta_description}}">
 <link href="{{ route('category', $this_cat->short_code) }}" rel="canonical">
+@if($faqs->isNotEmpty())
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => $faqs->map(function ($faq) {
+        return [
+            '@type' => 'Question',
+            'name' => $faq->question,
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => $faq->answer,
+            ],
+        ];
+    })->values(),
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}
+</script>
+@endif
 @endsection
 
 @push('style')
@@ -33,11 +51,191 @@
    -webkit-box-orient: vertical;
 }
 
-
-
-
-
-
+.category-faq {
+  position: relative;
+  overflow: hidden;
+  padding: 76px 0 82px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(0, 174, 239, .13), transparent 25rem),
+    linear-gradient(180deg, #f7fbfe 0%, #eef7fc 100%);
+}
+.category-faq::before {
+  position: absolute;
+  top: 50px;
+  left: -85px;
+  width: 220px;
+  height: 220px;
+  border: 38px solid rgba(1, 122, 201, .06);
+  border-radius: 50%;
+  content: "";
+}
+.category-faq__header {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+.category-faq__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  color: #017ac9;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.category-faq__eyebrow::before,
+.category-faq__eyebrow::after {
+  width: 24px;
+  height: 2px;
+  background: #25c4d8;
+  content: "";
+}
+.category-faq__title {
+  margin: 0 0 12px;
+  color: #12334b;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.category-faq__intro {
+  margin: 0;
+  color: #627586;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.category-faq__list {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.category-faq__item {
+  margin-bottom: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(1, 122, 201, .13);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(24, 71, 101, .06);
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.category-faq__item:hover,
+.category-faq__item.is-open {
+  border-color: rgba(1, 122, 201, .42);
+  box-shadow: 0 14px 34px rgba(1, 122, 201, .12);
+}
+.category-faq__item.is-open {
+  transform: translateY(-2px);
+}
+.category-faq__item h3 {
+  margin: 0;
+}
+.category-faq__question {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 17px;
+  padding: 21px 23px;
+  border: 0;
+  background: transparent;
+  color: #183f59;
+  cursor: pointer;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: left;
+}
+.category-faq__number {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eaf6fd;
+  color: #017ac9;
+  font-size: 12px;
+  transition: background .25s ease, color .25s ease;
+}
+.category-faq__item.is-open .category-faq__number {
+  background: #017ac9;
+  color: #fff;
+}
+.category-faq__question-text {
+  flex: 1;
+}
+.category-faq__icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border: 1.5px solid #25bcd4;
+  border-radius: 50%;
+}
+.category-faq__icon::before,
+.category-faq__icon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 2px;
+  background: #017ac9;
+  content: "";
+  transform: translate(-50%, -50%);
+  transition: transform .25s ease;
+}
+.category-faq__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.category-faq__item.is-open .category-faq__icon::after {
+  transform: translate(-50%, -50%) rotate(0);
+}
+.category-faq__answer {
+  padding: 0 76px 23px;
+  color: #526979;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.category-faq__answer[hidden] {
+  display: none;
+}
+.category-faq__answer p {
+  margin: 0;
+}
+.category-faq__question:focus-visible {
+  outline: 3px solid rgba(1, 122, 201, .28);
+  outline-offset: -3px;
+}
+@media (max-width: 767px) {
+  .category-faq {
+    padding: 50px 0 56px;
+  }
+  .category-faq__header {
+    margin-bottom: 27px;
+  }
+  .category-faq__title {
+    font-size: 27px;
+  }
+  .category-faq__question {
+    gap: 12px;
+    padding: 17px 16px;
+    font-size: 15px;
+  }
+  .category-faq__number {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+  .category-faq__answer {
+    padding: 0 16px 19px 60px;
+    font-size: 15px;
+  }
+}
 </style>
 
 <link rel="stylesheet" href="{{asset('frontend/css/blogs.css')}}">
@@ -165,108 +363,48 @@
 </section>
 
 
-                       <!-- tab start -->
-  @if ($slug === 'pressure-washer')
-  <main class="main">
-  <div class="tab">
-    <div class="tab-menu">
-      <button class="tab-menu-link is-active" data-content="item-1">
-        <span data-title="item-1">FAQ Section</span>
-      </button>
+@if($faqs->isNotEmpty())
+<section class="category-faq" id="category-faq" aria-labelledby="category-faq-title">
+  <div class="container">
+    <div class="category-faq__header">
+      <span class="category-faq__eyebrow">Helpful answers</span>
+      <h2 class="category-faq__title" id="category-faq-title">Frequently Asked Questions</h2>
+      <p class="category-faq__intro">
+        Find quick answers about {{ $this_cat->name }}. If you need more help, our team is ready to assist.
+      </p>
     </div>
 
-    <div class="tab-bar">
-      <div class="tab-bar-content is-active" id="item-1">
-        <div class="paragraph">
-          <div class="accordion_container">
-
-            <div class="accordion_head">
-              What type of pressure washers does YES Clean supply?
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p> At YES Clean we supply a variety of lightweight and easy to use pressure washers.
-              Our range includes petrol and diesel pressure washers, electric pressure washers, and hot and cold pressure washers.
-              From residential to commercial usage, our pressure washers are ideal for every day cleaning tasks and heavy-duty tasks.
-              </p>
-            </div>
-
-            <div class="accordion_head">
-              How can I choose the right pressure washer? 
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p> While choosing the right pressure washer consider the following factors such as the PSI rate,
-              Flow rate, Nozzle type, Power source, Portability and whether it is meant for residential or commercial use. 
-  </p>
-            </div>
-
-            <div class="accordion_head">
-              What are the maintenance requirements of pressure washers?
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p> The maintenance requirements of pressure washers include inspecting the hoses and connections for leaks,
-              checking the pump and cleaning the nozzles. For electric models, this also includes checking the power cable,
-              watching  for sparks and inspecting control panels and switches. With proper maintenance,
-              pressure washers can operate safely and deliver consistent performance. 
-              </p>
-            </div>
-
-            <div class="accordion_head">
-              What are the applications of pressure washers?
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p> Pressure washers are widely used in both commercial, residential and industrial applications.
-              They are ideal for cleaning bikes, cars, driveways, maintaining warehouses and workshops,
-              and for cleaning heavy machinery and degreasing production areas in the industrial settings. 
-              </p>
-            </div>
-            
-            
-            <div class="accordion_head">
-              Do these pressure washers have warranty coverage?
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p>  Yes, our pressure washers come with the manufacturer’s warranty. For further information please check the product’s specific details. 
-              </p>
-            </div>
-            
-            
-            <div class="accordion_head">
-             How do I choose between a hot and cold pressure washer?
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p> If the cleaning tasks involve removing general dirt and dust, then cold pressure washers would be ideal.
-              But if the task involves the regular tackling of tough grease and oil,
-              then hot pressure washers are the best choice and it cleans faster and more effectively.
-              
-              </p>
-            </div>
-            
-                        
-            <div class="accordion_head">
-           Are the pressure washers sustainable?
-              <span class="plusminus">+</span>
-            </div>
-            <div class="accordion_body" style="display: none;">
-              <p> Yes, most modern pressure washers are sustainable. They use less water and chemicals, and effectively remove harsh dirt and grime. 
-              
-              </p>
-            </div>
-
-          </div>
+    <div class="category-faq__list">
+      @foreach($faqs as $faq)
+      <article class="category-faq__item">
+        <h3>
+          <button
+            type="button"
+            class="category-faq__question"
+            aria-expanded="false"
+            aria-controls="category-faq-answer-{{ $faq->id }}"
+            id="category-faq-question-{{ $faq->id }}"
+          >
+            <span class="category-faq__number">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+            <span class="category-faq__question-text">{{ $faq->question }}</span>
+            <span class="category-faq__icon" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div
+          class="category-faq__answer"
+          id="category-faq-answer-{{ $faq->id }}"
+          role="region"
+          aria-labelledby="category-faq-question-{{ $faq->id }}"
+          hidden
+        >
+          <p>{!! nl2br(e($faq->answer)) !!}</p>
         </div>
-      </div>
+      </article>
+      @endforeach
     </div>
   </div>
-</main>
+</section>
 @endif
-
-                <!-- tab end -->
 
 <section class="express-intrst-area">
   <div class="container">
@@ -323,28 +461,6 @@
     </div>
   </div>
 </section>
-
-@if($slug == 'pressure-washer-and-tools')
-<section class="product-faq-area">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-10">
-        <div class="product-faq-box">
-          <h2>Frequently Asked Question On Pressure Washers</h2>
-          <div class="accordion_container">
-            <!-- FAQ content remains the same but optimized -->
-            <div class="accordion_head">1. What are the types of pressure washers<span class="plusminus">+</span></div>
-            <div class="accordion_body" style="display:none;">
-              <!-- FAQ content -->
-            </div>
-            <!-- More FAQ items -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-@endif
 @endsection
 
 @push('scripts')
@@ -457,22 +573,34 @@ function submitInterestForm() {
 </script>
 
 <script>
-$(".accordion_head").click(function () {
-  const $thisBody = $(this).next(".accordion_body");
-  const isVisible = $thisBody.is(":visible");
+document.querySelectorAll('.category-faq__question').forEach(function (button) {
+  button.addEventListener('click', function () {
+    const item = button.closest('.category-faq__item');
+    const answer = document.getElementById(button.getAttribute('aria-controls'));
+    const willOpen = button.getAttribute('aria-expanded') === 'false';
 
-  if (isVisible) {
-    $thisBody.slideUp(300);
-    $(this).children(".plusminus").text("+");
-  } else {
-    $(".accordion_body").slideUp(300);
-    $(".plusminus").text("+");
-    $thisBody.slideDown(300);
-    $(this).children(".plusminus").text("-");
-  }
+    document.querySelectorAll('.category-faq__question').forEach(function (otherButton) {
+      const otherAnswer = document.getElementById(otherButton.getAttribute('aria-controls'));
+
+      otherButton.setAttribute('aria-expanded', 'false');
+      otherButton.closest('.category-faq__item').classList.remove('is-open');
+      otherAnswer.hidden = true;
+    });
+
+    if (willOpen) {
+      button.setAttribute('aria-expanded', 'true');
+      item.classList.add('is-open');
+      answer.hidden = false;
+      answer.animate(
+        [
+          { opacity: 0, transform: 'translateY(-6px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ],
+        { duration: 220, easing: 'ease-out' }
+      );
+    }
+  });
 });
-
-
 </script>
 
 @endpush
