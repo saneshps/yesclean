@@ -148,6 +148,7 @@
   font-weight: 700;
   line-height: 1.45;
   text-align: left;
+  outline: none !important;
 }
 .category-faq__number {
   display: inline-flex;
