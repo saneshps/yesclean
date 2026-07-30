@@ -1398,6 +1398,10 @@ header.sticky .menu-item .sub-menu {
     padding: 20px 20px;
   }
 }
+.blog-details-area .blog-details-pic .post-slide .post-content ul {
+  margin-left: 20px !important;
+  color: #333 !important;
+}
 .blog-details-area .blog-details-pic .post-slide .post-content a span {
   color: #333;
 }
