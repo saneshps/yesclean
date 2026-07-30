@@ -855,8 +855,8 @@ strong {
 }
 
 .about-cont h3 {
-  font-size: 2rem;
-  color: #737272;
+  font-size: 1.7rem;
+  color: #000 !important;
 }
 
 .about-cont ul {
