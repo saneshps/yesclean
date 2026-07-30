@@ -860,9 +860,8 @@ strong {
 }
 
 .about-cont ul {
-  margin: 8px 0 0 0;
-  list-style-type: circle;
-  color: #017ac9;
+  margin-left: 20px !important;
+  color: #333 !important;
 }
 
 .about-cont ul li p {
