@@ -140,7 +140,7 @@
             }
 
             @include respond-below(sm) {
-                font-size: 12px;
+                font-size: 14px;
                 margin: 0 9px 0 0;
             }
 
@@ -534,13 +534,16 @@ header .navigation .menu {
     top: 45px;
     line-height: 20px;
     list-style: none;
-    border-radius: 0px 0px 10px 10px;
-    text-shadow: 0 5px 25px rgba(157, 10, 10, 0.2);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 40px rgba(1, 90, 150, 0.18);
     pointer-events: none;
-    transform: translateY(20px);
+    transform: translateY(12px);
     opacity: 0;
-    transition: 0.3s;
-    transition-property: transform, opacity;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    overflow: visible;
+    min-width: 260px;
+    z-index: 1000;
+    padding: 0;
 }
 
 header.sticky .menu-item .sub-menu {
@@ -550,62 +553,95 @@ header.sticky .menu-item .sub-menu {
 .menu-item:hover .sub-menu {
     pointer-events: all;
     transform: translateY(0);
-    opacity: 1;
-    box-shadow: 0px 1px 20px 0px #e1e1e1;
+    opacity: 1; 
 }
 
 
 
 .menu-item .sub-menu .sub-item {
     position: relative;
-    box-shadow: inset 0px -30px 5px -30px rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid #14180626;
-
+    border-bottom: 1px solid rgba(1, 122, 201, 0.08);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background 0.25s ease;
 }
 
 .menu-item .sub-menu .sub-item .more-btn {
-    margin: 0 8px 0px 0;
+    margin: 0 8px 0 0;
     font-size: 14px;
-    color: #333;
+    color: #017ac9;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: absolute;
+    right: 0;
+}
+
+// Desktop: show arrow only on items with nested submenu
+@media (min-width: 1061px) {
+    .sub-item.more > .more-btn,
+    .more2 > .more-btn {
+        display: none;
+    }
+
+    .sub-item.more:has(> .more-menu:not(:empty)) > .more-btn,
+    .more2:has(> .more-menu:not(:empty)) > .more-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sub-item .more-menu:empty,
+    .more2 .more-menu:empty {
+        display: none !important;
+    }
 }
 
 
 .menu-item .sub-menu .sub-item a {
-    color: #333;
+    color: #2c3e50;
     font-size: 14px;
     text-decoration: none;
-    padding: 0px 20px;
+    padding: 0 20px;
     font-weight: 500;
     width: 100%;
     display: flex;
     justify-content: space-between;
     text-transform: capitalize;
-    height: 40px;
-    display: flex;
+    height: 44px;
     align-items: center;
-
-    &:hover {
-        color: #fff;
-    }
+    transition: color 0.25s ease, background 0.25s ease;
 
     i {
         margin: 2px 0 0 15px;
+        font-size: 13px;
+        color: #017ac9;
+        transition: color 0.25s ease, transform 0.25s ease;
     }
 }
 
-.menu-item .sub-menu .sub-item:hover {
-    background: #017ac9;
+// Only highlight the direct link row — not nested submenu links
+.menu-item .sub-menu > .sub-item:hover > a {
+    color: #fff;
+    background: linear-gradient(90deg, #017ac9, #0194e8);
+
+    i {
+        color: #fff;
+    }
 }
 
-.menu-item .sub-menu .sub-item:hover a {
-    //  color: #fff;
+.menu-item .sub-menu > .sub-item:hover > .more-btn {
+    color: #fff;
+    position: absolute;
+    right: 0;
 }
 
-.menu-item .sub-menu .sub-item:last-child:hover {
-    border-radius: 0 0 8px 8px;
+.menu-item .sub-menu .sub-item:last-child:hover > a {
+    border-radius: 0;
+}
+
+.menu-item .sub-menu .sub-item.more {
+    overflow: visible;
 }
 
 .more .more-menu {
@@ -614,27 +650,37 @@ header.sticky .menu-item .sub-menu {
     list-style: none;
     top: 0;
     left: 100%;
+    margin-left: -2px;
     white-space: nowrap;
-    border-radius: 0 0px 10px 10px;
-    // overflow: hidden;
+    border-radius: 0 8px 8px 0;
     pointer-events: none;
-    transform: translateY(20px);
+    transform: translateX(0);
     opacity: 0;
-    transition: 0.6s;
-    transition-property: transform, opacity;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    box-shadow: 8px 8px 30px rgba(1, 90, 150, 0.12);
+    z-index: 1001;
+    min-width: 220px;
+    padding: 0;
+    visibility: hidden;
+
+    // Invisible bridge so mouse can reach flyout without losing hover
+    &::before {
+        content: '';
+        position: absolute;
+        left: -14px;
+        top: 0;
+        width: 14px;
+        height: 100%;
+    }
 }
 
-.more:hover .more-menu {
+.more:hover > .more-menu {
     pointer-events: all;
-    transform: translateY(0);
     opacity: 1;
-    box-shadow: 0px 1px 20px 0px #e1e1e1;
-    // overflow-x: scroll;
-    // height: 290px;
+    visibility: visible;
 }
 
 .more .more-menu .more-item {
-
     box-shadow: inset 0px -30px 5px -30px rgba(255, 255, 255, 0.2);
     transition: 0.3s;
 }
@@ -643,39 +689,50 @@ header.sticky .menu-item .sub-menu {
     background: #017ac9;
 }
 
-
-
-.more:hover .more2 .more-menu {
+// Hide only non-hovered level-2 flyouts (don't block level-3 menu)
+.more:hover .more2:not(:hover) > .more-menu {
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.more2 {
+    overflow: visible;
 }
 
 .more2 .more-menu {
     position: absolute;
     background: #ffffff;
     list-style: none;
-    z-index: 0;
+    z-index: 1003;
     top: 0;
     left: 100%;
+    margin-left: -2px;
     white-space: nowrap;
-    border-radius: 0 0px 10px 10px;
+    border-radius: 0 8px 8px 0;
     pointer-events: none;
-    -webkit-transform: translateY(20px);
-    transform: translateY(20px);
+    transform: translateX(0);
     opacity: 0;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    -webkit-transition-property: opacity, -webkit-transform;
-    transition-property: opacity, -webkit-transform;
-    transition-property: transform, opacity;
-    transition-property: transform, opacity, -webkit-transform;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    box-shadow: 8px 8px 30px rgba(1, 90, 150, 0.12);
+    min-width: 200px;
+    padding: 0;
+    visibility: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -14px;
+        top: 0;
+        width: 14px;
+        height: 100%;
+    }
 }
 
-.more2:hover .more-menu {
+.more2:hover > .more-menu {
     pointer-events: all;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
     opacity: 1 !important;
-    z-index: 999;
+    visibility: visible !important;
 }
 
 .more2 .more-menu .more-item {
@@ -687,7 +744,76 @@ header.sticky .menu-item .sub-menu {
 }
 
 .more2 .more-menu .more-item:hover {
-    background: #017ac9;
+    background: transparent;
+
+    > a {
+        color: #fff;
+    }
+}
+
+@media (min-width: 1061px) {
+    header,
+    header .navigation,
+    header .navigation .menu {
+        overflow: visible;
+    }
+
+    // Level 2 flyout links — always dark unless that row is hovered
+    .more .more-menu > .more2 > a {
+        color: #2c3e50 !important;
+        background: transparent;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0 20px;
+        padding-right: 25px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        text-transform: capitalize;
+        white-space: nowrap;
+        transition: color 0.25s ease, background 0.25s ease;
+    }
+
+    .more .more-menu > .more2:hover > a {
+        color: #fff !important;
+        background: linear-gradient(90deg, #017ac9, #0194e8);
+    }
+
+    .more .more-menu > .more2:hover > .more-btn {
+        color: #fff;
+    }
+
+    // Level 3 flyout links
+    .more2 .more-menu > .more-item > a {
+        color: #2c3e50 !important;
+        background: transparent;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0 20px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        text-transform: capitalize;
+        white-space: nowrap;
+        transition: color 0.25s ease, background 0.25s ease;
+    }
+
+    .more2 .more-menu > .more-item:hover > a {
+        color: #fff !important;
+        background: linear-gradient(90deg, #017ac9, #0194e8);
+    }
+
+    // Parent hover must not turn nested flyout text white
+    .menu-item .sub-menu > .sub-item:hover .more-menu a {
+        color: #2c3e50;
+    }
+
+    .menu-item .sub-menu > .sub-item:hover .more-menu .more2:hover > a,
+    .menu-item .sub-menu > .sub-item:hover .more-menu .more-item:hover > a {
+        color: #fff;
+    }
 }
 
 .menu-btn {
@@ -695,41 +821,56 @@ header.sticky .menu-item .sub-menu {
 }
 
 @media (max-width: 1060px) {
-
-    .menu-item .sub-menu .sub-item .more-btn {
-        position: absolute;
-        right: 10px;
-        top: 12px;
+    .menu-item > a i {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 15px;
+        transition: transform 0.3s ease;
     }
 
+    .menu-item > a.sub-btn i {
+        margin-left: 6px;
+    }
+
+    // Kill desktop flyout rules on mobile
+    .more:hover .more-menu,
+    .more2:hover .more-menu {
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: all;
+    }
 
     .more:hover .more2 .more-menu {
-        opacity: 1;
-        background: #d7d7d7;
-    }
-
-    .more:hover .more2 .more-menu .more-item {
-        padding: 10px 0;
-    }
-
-    .more:hover .more2 .more-menu .more-item a {
-        margin-left: 0;
+        opacity: 1 !important;
+        transform: none !important;
     }
 
     header .navigation .menu {
         position: fixed;
         display: block;
-        background: #e3e3e3;
-        min-width: 350px;
+        flex: none;
+        max-width: 420px;
+        background: linear-gradient(165deg, #014d82 0%, #017ac9 45%, #0194e8 100%);
+        width: 88%;
         height: 100vh;
+        height: 100dvh;
         top: 0;
         right: -100%;
-        padding: 90px 50px;
+        padding: 88px 20px 40px;
         visibility: hidden;
         overflow-y: auto;
-        transition: 0.5s;
-        transition-property: right, visibility;
+        overflow-x: hidden;
+        transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s;
         z-index: 1001;
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25);
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 4px;
+        }
     }
 
     header.sticky .navigation {
@@ -739,29 +880,68 @@ header.sticky .menu-item .sub-menu {
     header .navigation .menu.active {
         right: 0;
         visibility: visible;
-        width: 500px;
 
         @include respond-below(sm) {
-            width: 100%;
-            padding: 70px 13px;
+            width: 92%;
+            padding: 76px 16px 32px;
             min-width: auto;
         }
     }
 
     .menu-item {
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        > a {
+            color: #fff !important;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            margin: 0;
+            padding: 6px 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: opacity 0.2s ease;
+
+            &:hover,
+            &:active {
+                color: #fff !important;
+                opacity: 0.85;
+            }
+
+            .fa-home {
+                color: #fff !important;
+                font-size: 18px !important;
+                padding-left: 0 !important;
+            }
+        }
     }
 
     .menu-item .sub-menu {
         opacity: 1;
         position: relative;
         top: 0;
-        transform: translateX(10px);
-        background: #d7d7d7;
-        border-radius: 5px;
+        left: 0;
+        transform: none;
+        pointer-events: all;
+        background: #fff;
+        border-radius: 12px;
         overflow: hidden;
         display: none;
+        width: 100%;
+        margin: 6px 0 14px;
+        padding: 0;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        border: none;
+        min-width: 0;
+        white-space: normal;
+        list-style: none;
     }
 
     header.sticky .menu-item .sub-menu {
@@ -769,115 +949,296 @@ header.sticky .menu-item .sub-menu {
     }
 
     .menu-item:hover .sub-menu {
-        transform: translateX(10px);
-    }
-
-    .menu-item .sub-menu .sub-item {
-        box-shadow: none;
-        padding: 12px 0;
-        display: inherit;
-    }
-
-    .menu-item .sub-menu .sub-item .more2 {
-        padding: 12px 0;
-    }
-
-    .menu-item .sub-menu .sub-item a {
-        display: initial;
-        height: auto;
-
-    }
-
-    .menu-item .sub-menu .sub-item a i {
-        position: absolute;
-        right: 15px;
-    }
-
-    .menu-item .sub-menu .sub-item:hover {
-        background: none;
-    }
-
-    .menu-item .sub-menu .sub-item a:hover {
-        color: #333;
-        transition: 0.3s;
-    }
-
-    .more .more-menu {
+        transform: none;
         opacity: 1;
+    }
+
+    // Reset desktop flex/absolute flyout — stack nested menus full width
+    .menu-item .sub-menu .sub-item,
+    .menu-item .sub-menu .sub-item.more,
+    .more .more-menu .more2,
+    .more .more-menu .sub-item {
+        display: block !important;
+        width: 100%;
         position: relative;
-        left: 0;
-        transform: translateY(0);
-        background: #fff;
-        border-radius: 5px;
-        display: none;
-        margin-top: 25px;
-    }
-
-    .more .more-menu .more-item {
         box-shadow: none;
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid rgba(1, 122, 201, 0.1);
+        white-space: normal;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background: none;
+        }
     }
 
-    .more .more-menu .more-item:hover {
+    .menu-item .sub-menu .sub-item > a,
+    .more .more-menu .more2 > a,
+    .more .more-menu .sub-item > a {
+        display: block !important;
+        width: 100%;
+        height: auto;
+        min-height: 46px;
+        color: #2c4a63 !important;
+        padding: 10px 50px 10px 16px !important;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.35;
+        text-transform: capitalize;
+        text-decoration: none;
+        box-sizing: border-box;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover,
+        &:active {
+            color: #017ac9 !important;
+            background: rgba(1, 122, 201, 0.07);
+        }
+    }
+
+    .menu-item .sub-menu .sub-item.more > .more-btn,
+    .more .more-menu .more2 > .more-btn {
+        position: absolute;
+        right: 12px;
+        top: 23px;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #017ac9;
+        background: rgba(1, 122, 201, 0.12);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 3;
+        flex: none;
+
+        &:active {
+            background: rgba(1, 122, 201, 0.22);
+            transform: translateY(-50%) scale(0.94);
+        }
+    }
+
+    .more .more-menu .more2 > .more-btn {
+        top: 21px;
+    }
+
+    .sub-item.more:has(> .more-menu:not(:empty)) > .more-btn,
+    .more2:has(> .more-menu:not(:empty)) > .more-btn {
+        display: flex !important;
+        color: #1a1919;
         background: none;
     }
 
-    .more .more-menu .more-item a {
-        margin-left: 20px;
+    .menu-item .sub-menu .sub-item:not(:has(> .more-btn)) > a,
+    .more .more-menu .more2:not(:has(> .more-btn)) > a,
+    .more2 .more-menu .more-item > a {
+        padding-right: 16px !important;
+    }
+
+    // Level 2 nested menu (inside parent category)
+    .more .more-menu {
+        opacity: 1 !important;
+        visibility: visible;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto;
+        transform: none !important;
+        pointer-events: all;
+        background: rgba(1, 122, 201, 0.07);
+        border-radius: 0;
+        display: none;
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid rgba(1, 122, 201, 0.12);
+        white-space: normal;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    .more:hover .more2 .more-menu {
+        opacity: 1 !important;
+        background: rgb(116 162 193 / 80%);
+        // background: rgb(1 122 201 / 80%);
+    }
+
+    .more .more-menu .more2 > a,
+    .more .more-menu .sub-item > a {
+        padding: 12px 50px 12px 24px !important;
+        font-size: 13px !important;
+        min-height: 42px;
+        color: #3d5a73 !important;
+    }
+
+    // Level 3 nested menu
+    .more2 .more-menu {
+        opacity: 1 !important;
+        visibility: visible;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        pointer-events: all;
+        background: rgb(1 122 201 / 71%);
+        border-radius: 0;
+        display: none;
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid rgba(1, 122, 201, 0.08);
+        white-space: normal;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    .more2:hover .more-menu {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    .more2 .more-menu .more-item {
+        display: block !important;
+        width: 100%;
+        box-shadow: none;
+        border-bottom: 1px solid rgba(1, 122, 201, 0.07);
+        min-height: 0;
+        padding: 0;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background: rgba(1, 122, 201, 0.08);
+        }
+
+        a {
+            display: block !important;
+            width: 100%;
+            margin: 0;
+            padding: 11px 16px 11px 36px !important;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1b1b1c !important;
+            text-decoration: none;
+            box-sizing: border-box;
+            min-height: 40px;
+            line-height: 1.35;
+            border-bottom: 1px solid rgb(255 255 255 / 79%);
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+            &:hover,
+            &:active {
+                color: #323232 !important;
+                background: rgb(116 162 193 / 80%);
+                // background: #017ac9c7;
+            }
+        }
     }
 
     .close-btn {
         position: absolute;
-        background: url(../img/close.png)no-repeat;
         width: 40px;
         height: 40px;
-        background-size: 25px;
-        background-position: center;
-        top: 0;
-        right: 0;
-        margin: 25px;
+        top: 16px;
+        right: 16px;
+        margin: 0;
         cursor: pointer;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transition: background 0.25s ease, transform 0.25s ease;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        &::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(0.95);
+        }
 
         @include respond-below(sm) {
-            width: 20px;
-            height: 20px;
-            margin: 15px;
+            width: 36px;
+            height: 36px;
+            top: 12px;
+            right: 12px;
+
+            &::before,
+            &::after {
+                width: 16px;
+            }
         }
     }
 
     .menu-btn {
-        background: url(../img/menu.png)no-repeat;
-        width: 40px;
-        height: 40px;
-        background-size: 30px;
+        width: 42px;
+        height: 42px; 
+        border-radius: 10px;
+        background-image: url(../img/menu.png);
+        background-repeat: no-repeat;
+        background-size: 22px;
         background-position: center;
         cursor: pointer;
         display: block;
         float: right;
         position: relative;
-        top: -55px;
+        top: -55px; 
+        transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+
+        &:active {
+            transform: scale(0.95);
+            background-color: rgba(1, 122, 201, 0.18);
+        }
 
         @include respond-below(sm) {
             top: 0;
             right: -7px;
+            width: 38px;
+            height: 38px;
+            background-size: 27px;
         }
-
-
     }
 
     header.sticky .menu-btn {
-
         @include respond-below(lg) {
             position: relative;
-            top: 0px;
+            top: 0;
         }
 
         @include respond-below(md) {
             position: relative;
-            top: 0px;
+            top: 0;
         }
-
-
-
     }
 
     header {
@@ -886,6 +1247,21 @@ header.sticky .menu-item .sub-menu {
 
     header.sticky {
         padding: 10px 20px;
+    }
+
+    .navigation .search-bar a {
+        color: #017ac9;
+        font-size: 17px;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        transition: background 0.25s ease;
+
+        &:active {
+            background: rgba(1, 122, 201, 0.18);
+        }
     }
 }
 

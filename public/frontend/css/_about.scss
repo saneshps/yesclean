@@ -1,19 +1,20 @@
 .about-main-area {
     margin: 80px 0 60px 0;
+    @include respond-below(sm) {
+        margin: 80px 0 40px 0;
+    }
 
     img {
-        width: 100%;
-
-        @include respond-below(sm) {
-            height: 370px;
-            object-fit: cover;
-        }
+        width: 100%; 
     }
 
 }
 
 .about-page-area {
     margin: 80px 0 0 0;
+    @include respond-below(sm) {
+        margin: 40px 0 0 0;
+    }
 
     .about-box {
         position: relative;

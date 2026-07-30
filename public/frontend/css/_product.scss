@@ -2,11 +2,16 @@
     .express-intrest-manual {
 
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 20px;
         width: 100%;
         align-items: center;
         margin: 40px 0 30px 0;
         padding: 0 10px;
+        @include respond-below(sm) {
+           justify-content: center;
+            gap: 10px;
+        }
 
 
         .express-intrest {
@@ -33,7 +38,8 @@
 
 
                 @include respond-below(sm) {
-                    padding: 10px !important;
+                    padding: 12px 10px !important;
+                    font-size: 15px !important;
                 }
 
             }
@@ -43,19 +49,26 @@
 
                 @include respond-below(sm) {
                     padding: 15px 0px;
+                    width: 96%;
+                    margin: 0 auto;
                 }
 
                 .close {
                     float: right;
-                    font-size: 1.5rem;
+                    font-size: 1.8rem;
                     font-weight: 700;
-                    line-height: 1;
                     color: #017ac9;
                     text-shadow: 0 1px 0 #fff;
                     opacity: 1;
                     border: 1px solid #017ac9 !important;
-                    padding: 3px 7px !important;
-                    margin: 0 -15px -15px auto !important;
+                    padding: 11px 13px 14px 12px;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 3px;
                 }
 
             }

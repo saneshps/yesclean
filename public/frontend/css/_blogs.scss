@@ -10,21 +10,21 @@
 
     .post-slide .post-img img {
         width: 100%;
-        height: 260px;
+        height: auto;
         object-fit: cover;
         transform: scale(1, 1);
         transition: all 0.3s ease-in-out 0s;
 
         @include respond-below(xl) {
-            height: 190px;
+            height: auto;
         }
 
         @include respond-below(lg) {
-            height: 260px;
+            height: auto;
         }
 
         @include respond-below(md) {
-            height: 400px;
+            height: auto;
         }
 
         @include respond-below(sm) {
@@ -157,6 +157,9 @@
             padding: 20px 30px;
             position: relative;
             background: #e5e5e5;
+            @include respond-below(sm) {
+                padding: 20px 20px;
+            }
 
             a {
                 span {

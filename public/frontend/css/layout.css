@@ -1409,37 +1409,143 @@ h1 {
 
 .mail-phone {
   position: fixed;
-
-  top: 60%;
-  right: 0px;
-  z-index: 1;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  box-shadow: -3px 3px 18px rgba(0, 0, 0, 0.18);
 }
 
-
-
 .mail-phone a {
-  display: block;
-  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: 0;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mail-phone a:last-child {
+  border-bottom: none;
 }
 
 .mail-phone a i {
-  font-size: 1.5em;
+  font-size: 1.4rem;
   color: #fff;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.mail-phone a:hover {
+  transform: translateX(-4px);
+}
+
+.mail-phone a:hover i {
+  transform: scale(1.12);
+}
+
+.mail-phone a:active {
+  transform: translateX(-2px) scale(0.96);
+}
+
+.mail-phone a:focus-visible {
+  outline: 2px solid #017ac9;
+  outline-offset: -2px;
 }
 
 .mail-phone .phone {
-  background: #737272;
-  padding: 1em;
+  background: #5c5c5c;
+  text-decoration: none;
+}
+
+.mail-phone .phone:hover {
+  background: #454545;
 }
 
 .mail-phone .mail {
-  background: #737272;
-  padding: 1em;
+  background: #5c5c5c;
+  text-decoration: none;
+}
+
+.mail-phone .mail:hover {
+  background: #454545;
 }
 
 .mail-phone .whatsapp {
-  background: #4FCE5D;
-  padding: 1em;
+  background: #25d366;
+  text-decoration: none;
+}
+
+.mail-phone .whatsapp:hover {
+  background: #1ebe5d;
+}
+
+@media only screen and (max-width: 1023px) {
+  .mail-phone a {
+    width: 50px;
+    height: 50px;
+  }
+
+  .mail-phone a i {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mail-phone {
+    top: 50%;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    transform: translateY(-50%);
+    flex-direction: column;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -2px 2px 14px rgba(0, 0, 0, 0.16);
+    padding-bottom: 0;
+  }
+
+  .mail-phone a {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: none;
+  }
+
+  .mail-phone a:last-child {
+    border-bottom: none;
+  }
+
+  .mail-phone a:hover {
+    transform: translateX(-3px);
+  }
+
+  .mail-phone a:hover i {
+    transform: scale(1.1);
+  }
+
+  .mail-phone a:active {
+    transform: translateX(-2px) scale(0.96);
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  .mail-phone a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mail-phone a i {
+    font-size: 1.15rem;
+  }
 }
 
 
@@ -1714,13 +1820,15 @@ h1 {
 
 
 .footer .fot {
-  padding-left: 60px;
-  padding-top: 20px;
-  margin-top: 0;
   position: relative;
   width: 100%;
   background: #0b2130;
   text-align: center;
+  padding: 16px 20px 0 30px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer .fot:before {
@@ -2085,7 +2193,7 @@ h1 {
 
   .search-bar {
     top: -33px;
-    right: 130px;
+    right: 50px;
     z-index: -1;
   }
 
@@ -2268,7 +2376,9 @@ h1 {
 @media only screen and (min-width : 768px) and (max-width :1023px) {
 
   /*sm*/
-
+  .main .tab-bar {
+    padding: 0 !important; 
+}
 
   #productfeeds .item img {
     height: 210px;
@@ -2297,10 +2407,9 @@ h1 {
 
 
   .search-bar {
-    right: 55px;
+    right: 25px;
     top: -36px;
-    z-index: -1;
-    border: 1px solid #ccc;
+    z-index: -1; 
     padding: 0 7px;
     height: 33px;
     display: flex;
@@ -2363,16 +2472,56 @@ h1 {
 
 
 
+@media only screen and (min-width : 640px) and (max-width : 767px) 
+{
+  .btn-top
+  {
+    font-size: 13px !important;
+    padding: 6px 6px !important;
+  }
+  .header-top-area .header-top-contact a {
+    margin: 0 13px 0 0;
+    font-size: 13px;
+}
+.menu-btn
+{
+  right: -5px;
 
+}
+.search-bar {
+  right: 38px;
+  top: -35px;
+}
+
+}
+
+@media only screen and (min-width : 150px) and (max-width : 639px) 
+{
+  .search-bar {
+    right: -15px;
+    top: -23px;
+}
+}
 
 
 /*mobile*/
 
 @media only screen and (min-width : 150px) and (max-width : 767px) {
 
+  .accordion_head { 
+    padding: 15px 15px; 
+}
+.accordion_body { 
+  padding: 0 15px;
+}
+
   .main .tab {
-    width: 100%;
+    width: 100% !important;
+    padding: 0 15px !important;
   }
+  .main .tab-bar {
+    padding: 0 !important; 
+}
 
   #productfeeds .item img {
     height: auto;
@@ -2432,13 +2581,13 @@ h1 {
   }
 
 
-
+/* 
   .search-bar {
 
-    right: 5px;
+    right: -15px;
     top: -23px;
 
-  }
+  } */
 
 
 
@@ -2897,7 +3046,7 @@ body .search_bar p {
 }
 
 .main .tab-bar {
-  padding: 2.5rem 0;
+  padding: 1rem 0;
   overflow: hidden;
   background: #ffffff;
 }

@@ -25,29 +25,19 @@
         }
     }
 
-    .what-we-do-box {
+    .row {
+        > [class*="col-"] {
+            display: flex;
+        }
+    }
 
+    .what-we-do-box {
+        flex: 1;
+        width: 100%;
         padding: 30px 30px;
         border: 1px solid #cfebfd40;
         border-radius: 8px;
         margin-bottom: 30px;
-        height: 230px;
-
-        @include respond-below(xl) {
-            height: 280px;
-        }
-
-        @include respond-below(lg) {
-            height: 230px;
-        }
-
-        @include respond-below(md) {
-            height: 180px;
-        }
-
-        @include respond-below(sm) {
-            height: auto;
-        }
 
         h3 {
             font-weight: 400;
@@ -55,11 +45,17 @@
             margin-bottom: 10px;
         }
 
-        p {
+        p { 
+            line-height: 26px; 
             color: #fff;
-            text-align: justify;
-            line-height: 26px;
-            font-size: 16px;
+                text-align: justify; 
+            a 
+            {
+                color: #fff;
+                text-align: justify; 
+                font-size: 16px;
+                text-decoration: none;
+            }
 
             @include respond-below(xl) {
                 text-align: left;

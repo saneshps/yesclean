@@ -24,7 +24,7 @@
                     padding: 60px 50px;
                     text-align: left;
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-start;
                     align-items: center;
 
                     @include respond-below(sm) {
